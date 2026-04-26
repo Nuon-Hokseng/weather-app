@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --sky-dawn: #1a1035;
+  --accent: #60b8ff;
+  --accent-cool: #a8d8f0;
+  --glass: rgba(255, 255, 255, 0.06);
+  --glass-border: rgba(255, 255, 255, 0.12);
+  --text-primary: #f0f4ff;
+  --text-secondary: rgba(200, 215, 240, 0.75);
+  --text-muted: rgba(160, 185, 220, 0.5);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  height: 100%;
+  font-family: 'DM Sans', sans-serif;
+  background: var(--sky-dawn);
+  color: var(--text-primary);
+  overflow-x: hidden;
+}
+
+.font-display { font-family: 'Syne', sans-serif; }
+
+.sky-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: 
+    radial-gradient(ellipse 80% 50% at 20% 0%, rgba(30, 100, 200, 0.4) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 20%, rgba(100, 60, 180, 0.3) 0%, transparent 50%),
+    linear-gradient(170deg, #0c1a3a 0%, #0f2850 40%, #1a1035 100%);
+}
+
+.sky-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: 
+    radial-gradient(1px 1px at 20% 30%, rgba(255,255,255,0.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 60% 15%, rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 80% 40%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 40% 70%, rgba(255,255,255,0.2) 0%, transparent 100%);
+  animation: twinkle 8s infinite alternate;
+}
+
+@keyframes twinkle {
+  0% { opacity: 0.4; }
+  100% { opacity: 1; }
+}
+
+.glass {
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.search-input {
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--text-primary);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1rem;
+  transition: all 0.25s;
+  outline: none;
+}
+
+.search-input::placeholder { color: var(--text-muted); }
+
+.search-input:focus {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(96, 184, 255, 0.15);
+}
+
+.temp-display {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  line-height: 1;
+  background: linear-gradient(135deg, #fff 0%, var(--accent-cool) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.stat-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 1.25rem;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.precip-bar {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 99px;
+  overflow: hidden;
+  height: 4px;
+}
+
+.precip-fill {
+  height: 100%;
+  border-radius: 99px;
+  background: linear-gradient(90deg, var(--accent) 0%, #7dd3fc 100%);
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-in { animation: fadeSlideUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) both; }
+.animate-in-delay-1 { animation-delay: 0.1s; }
+.animate-in-delay-2 { animation-delay: 0.2s; }
+.animate-in-delay-3 { animation-delay: 0.3s; }
+
+.scroll-x { overflow-x: auto; scrollbar-width: none; }
+.scroll-x::-webkit-scrollbar { display: none; }
+
+.city-pill {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 99px;
+  padding: 0.35rem 0.85rem;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.city-pill:hover {
+  background: rgba(96,184,255,0.15);
+  border-color: rgba(96,184,255,0.4);
+  color: var(--accent);
+}
+
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+}
